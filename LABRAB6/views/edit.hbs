@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>edit component</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="./css/style.css" />
+    <style>.field{width:200px;}</style>
+</head>
+
+<body>
+    <h1>Изменить данные</h1>
+    <form action="/edit" method="POST">
+        <input type="hidden" name="id" value="{{component.id}}" />
+        
+        <label>Название</label><br>
+        <input name="name" class="field" value="{{component.name}}" /><br><br>
+
+        <label>Цена</label><br>
+        <input name="price" class="field" value="{{component.price}}" /><br><br>
+        
+        <label>Место в рейтинге</label><br>
+        <input name="rating" type="number" class="field" min="0" max="3000" value="{{component.rating}}" /><br><br>
+
+        <label>Производитель</label><br>
+        <input name="maker" class="field" value="{{component.maker}}" /><br><br>
+        
+        <input type="submit" value="Сохранить" />
+    </form>
+    <a href="/">На главную</a>
+</body>
+
+<html>

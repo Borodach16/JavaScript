@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>MySQL</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="./css/style.css" />
+</head>
+
+<body>
+    <center>
+    <h3>Список компонентов</h1>
+    <p><a href="/create">Добавить компонент</a></p>
+    <p><a href="/backup">Вернуть БД к исходному состоянию</a></p>
+    <table>
+        <tr>
+            <th>Редактор</th>
+            <th>Название</th>
+            <th>Цена&nbsp;<a href="/sort/price.ASC">▲</a><a href="/sort/price.DESC">▼</a></th>
+            <th>Место в рейтинге&nbsp;<a href="/sort/rating.ASC">▲</a><a href="/sort/rating.DESC">▼</a></th>
+            <th>Производитель</th>
+        </tr>
+        {{#each components}}
+            <tr>
+                <td width=180 class="editor">
+                    <form action="/edit/{{this.id}}" method="GET" style="display:inline;">
+                        <input type="submit" value="Изменить" />
+                    </form>
+                    <form action="/delete/{{this.id}}" method="POST" style="display:inline;">
+                        <input type="submit" value="Удалить" />
+                    </form>
+                </td>
+                <td>{{this.name}}</td>
+                <td>{{this.price}}</td>
+                <td>{{this.rating}}</td>
+                <td>{{this.maker}}</td>
+            </tr>
+        {{/each}}
+    </table>
+    </center>
+</body>
+
+<html>

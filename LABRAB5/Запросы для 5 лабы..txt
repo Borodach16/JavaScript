@@ -1,0 +1,40 @@
+CREATE VIEW view_01 as
+SELECT g.nameGroup, s.id, concat(s.lastName, " ", s.firstName) as fullName
+FROM students s
+INNER JOIN studygroups g ON s.keyGroup = g.idGr
+ORDER BY g.nameGroup, fullName
+
+CREATE VIEW view_02 as
+SELECT s.id, s.lastName
+FROM students s, studygroups g, curators c
+WHERE s.keyGroup = g.idGr AND g.keyCur = c.idCur AND c.nameCur = "Дуров"
+
+CREATE VIEW view_03 as
+SELECT s.id, concat(s.lastName, " ", s.firstName) as fullName
+FROM students s, marks m, edusubjects e
+WHERE s.id = m.keyStudent AND m.keySubject = e.id AND e.nameSubject = "ООП" AND m.mark = 5
+
+CREATE VIEW view_04
+SELECT s.id, s.lastName, m.mark
+FROM students s, marks m, edusubjects e, studygroups g
+WHERE s.keyGroup = g.idGr AND s.id = m.keyStudent AND m.keySubject = e.id AND e.nameSubject = "ООП" AND g.nameGroup = "ПИнб-2"
+ORDER BY s.lastName
+
+CREATE VIEW view_05 as
+SELECT s.lastName, a.avg_mark 
+FROM students s INNER JOIN (
+    SELECT keyStudent, ROUND(AVG(mark), 2) as avg_mark
+    FROM marks
+    GROUP BY keyStudent) a
+WHERE a.keyStudent = s.id
+ORDER BY a.avg_mark DESC
+LIMIT 5
+
+CREATE VIEW view_06 as
+SELECT s.lastName, a.avg_mark 
+FROM students s INNER JOIN (
+    SELECT keyStudent, ROUND(AVG(mark), 2) as avg_mark
+    FROM marks
+    GROUP BY keyStudent
+	HAVING avg(mark) < 4) a
+ORDER BY a.avg_mark DESC
