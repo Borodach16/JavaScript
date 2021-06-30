@@ -19,9 +19,7 @@ th {
     height: 32px; /* Высота ячеек */
 }
 
-td {
-    background: rgb(255, 244, 200); /* Цвет фона ячейки */
-}
+
 
 td.editor {
     background: rgb(190, 190, 190); /* Цвет фона ячейки */
@@ -32,3 +30,8 @@ a {
     color: green;
     font-weight: 600;
 }
+
+tbody td:hover {
+    background: black; /* Цвет фона при наведении */
+    color: #fff; /* Цвет текста при наведении */
+   }

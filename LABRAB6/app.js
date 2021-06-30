@@ -59,6 +59,14 @@ app.get("/edit/:id", function(req, res) {
     });
 });
 
+app.get("/remove", function(req, res) {
+    let query = "TRUNCATE TABLE components";
+    pool.query(query, function(err, data) {
+        if (err) return console.log(err);
+        res.redirect("/");
+    });
+});
+
 app.get("/backup", function(req, res){
     const ctj = require('./utils').csv_to_json;
     const get_conn = require('./utils').get_conn;
